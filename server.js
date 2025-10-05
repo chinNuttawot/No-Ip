@@ -91,15 +91,15 @@ schedule.scheduleJob(lineRule, async () => {
   }
 });
 
-// 2) Daily DB status update at 23:59 Asia/Bangkok
+// 2) Daily DB status update at 00:01 Asia/Bangkok
 const updateRule = new schedule.RecurrenceRule();
 updateRule.tz = "Asia/Bangkok";
-updateRule.hour = 23;
-updateRule.minute = 59;
+updateRule.hour = 0;
+updateRule.minute = 1;
 
 schedule.scheduleJob(updateRule, async () => {
   try {
-    console.log("[Job] Starting runDailyStatusUpdate @ 23:59 Asia/Bangkok");
+    console.log("[Job] Starting runDailyStatusUpdate @ 00:01 Asia/Bangkok");
     await runDailyStatusUpdate(process.env);
   } catch (err) {
     console.error("runDailyStatusUpdate job error:", err);
